@@ -19,7 +19,6 @@ RUN mkdir -p /usr/share/man/man1 \
     && docker-php-ext-enable imagick smbclient \
     && mkdir /var/log/supervisord /var/run/supervisord
 
-#COPY supervisord.conf /etc/supervisor/supervisord.conf
+COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-#ENTRYPOINT ["/entrypoint.sh"]
-#CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord"]
