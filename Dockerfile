@@ -22,6 +22,7 @@ RUN mkdir -p /usr/share/man/man1 \
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
 COPY entrypoint.sh /my_entrypoint.sh
-ENTRYPOINT ["/my_entrypoint.sh"]
+RUN chmod +x /my_entrypoint.sh
 
+ENTRYPOINT ["/my_entrypoint.sh"]
 CMD ["/usr/bin/supervisord"]
