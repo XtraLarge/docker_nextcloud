@@ -21,9 +21,6 @@ RUN mkdir -p /usr/share/man/man1 \
 
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 
-RUN rm -f /entrypoint.sh
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV NEXTCLOUD_UPDATE=1
 
-#ENTRYPOINT ["/my_entrypoint.sh"]
 CMD ["/usr/bin/supervisord"]
