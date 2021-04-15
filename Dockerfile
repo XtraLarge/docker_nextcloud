@@ -52,6 +52,24 @@ RUN mkdir -p \
     /var/run/supervisord \
 ;
 
+#Patch for download bug in 21.0.1
+RUN set -ex; \
+    \
+    savedAptMark="$(apt-mark showmanual)"; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        unzip \
+    ; \
+    cd /tmp; \
+    curl https://download.nextcloud.com/server/releases/nextcloud-21.0.0.zip --output nextcloud-21.0.0.zip; \
+    unzip nextcloud-21.0.0.zip; \
+    rm -rf  /var/www/html/apps/files_external/3rdparty/icewind/; \
+    mv nextcloud/apps/files_external/3rdparty/icewind/ /var/www/html/apps/files_external/3rdparty/icewind/; \
+    chown -R www-data.root /var/www/html/apps/files_external/3rdparty/icewind/; \
+    rm -rf nextcloud; \
+    rm -f nextcloud-21.0.0.zip \
+    
 COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
