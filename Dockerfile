@@ -65,7 +65,7 @@ RUN set -ex; \
     curl https://download.nextcloud.com/server/releases/nextcloud-21.0.0.zip --output nextcloud-21.0.0.zip; \
     unzip nextcloud-21.0.0.zip; \
     rm -rf  /var/www/html/apps/files_external/3rdparty/icewind/; \
-    mv nextcloud/apps/files_external/3rdparty/icewind/ /var/www/html/apps/files_external/3rdparty/icewind/; \
+    mv /tmp/nextcloud/apps/files_external/3rdparty/icewind/ /var/www/html/apps/files_external/3rdparty/icewind/; \
     chown -R www-data.root /var/www/html/apps/files_external/3rdparty/icewind/; \
     rm -rf nextcloud; \
     rm -f nextcloud-21.0.0.zip \
