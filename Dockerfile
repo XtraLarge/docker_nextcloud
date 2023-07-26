@@ -5,6 +5,7 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         ffmpeg \
+        ghostscript \
         libmagickcore-6.q16-6-extra \
         procps \
         smbclient \
@@ -51,7 +52,7 @@ RUN mkdir -p \
     /var/log/supervisord \
     /var/run/supervisord \
 ;
-    
+
 COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
