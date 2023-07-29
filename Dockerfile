@@ -46,9 +46,9 @@ RUN set -ex; \
 #        | sort -u \
 #        | xargs -rt apt-mark manual;
 
-RUN set -ex; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-    rm -rf /var/lib/apt/lists/*
+#RUN set -ex; \
+#    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+#    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p \
     /var/log/supervisord \
