@@ -32,6 +32,12 @@ RUN set -ex; \
         imap 
 
 RUN set -ex; \
+  grep -sr "imap.so.so" /
+
+RUN set -ex; \
+  grep -sr "imap.so" /
+
+RUN set -ex; \
     find / -name imap.so
     
 RUN set -ex; \
