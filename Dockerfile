@@ -35,10 +35,13 @@ RUN set -ex; \
     docker-php-ext-enable smbclient
 
 RUN set -ex; \
-ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829/
+ln -s /usr/local/lib/php/extensions/no-debug-non-zts-20220829/imap.so /usr/src/php/ext/imap/modules/imap.so
 
 RUN set -ex; \
-ls -la /usr/local/lib/php/extensions/
+ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+
+RUN set -ex; \
+ls -la /usr/src/php/ext/imap/modules
 
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 RUN set -ex; \
