@@ -29,19 +29,20 @@ RUN set -ex; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
         bz2 \
-        imap \
-    ; \
-    pecl install smbclient; \
-    docker-php-ext-enable smbclient
+        imap 
+
+RUN set -ex; \
+ls -la /usr/src/php/ext/imap/modules
 
 RUN set -ex; \
 ln -s /usr/local/lib/php/extensions/no-debug-non-zts-20220829/imap.so /usr/src/php/ext/imap/modules/imap.so
 
 RUN set -ex; \
 ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
-
+        
 RUN set -ex; \
-ls -la /usr/src/php/ext/imap/modules
+    pecl install smbclient; \
+    docker-php-ext-enable smbclient
 
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
 RUN set -ex; \
