@@ -32,13 +32,16 @@ RUN set -ex; \
         imap 
 
 RUN set -ex; \
-ls -la /usr/src/php/ext/imap/modules
+    find / -name imap.so
+    
+RUN set -ex; \
+    ls -la /usr/src/php/ext/imap/modules
 
 RUN set -ex; \
-ln -s /usr/local/lib/php/extensions/no-debug-non-zts-20220829/imap.so /usr/src/php/ext/imap/modules/imap.so
+    ln -s /usr/local/lib/php/extensions/no-debug-non-zts-20220829/imap.so /usr/src/php/ext/imap/modules/imap.so
 
 RUN set -ex; \
-ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+    ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
         
 RUN set -ex; \
     pecl install smbclient; \
