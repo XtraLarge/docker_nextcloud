@@ -38,6 +38,9 @@ RUN set -ex; \
     ls -la /usr/src/php/ext/imap/modules
 
 RUN set -ex; \
+    ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
+        
+RUN set -ex; \
     ln -s /usr/local/lib/php/extensions/no-debug-non-zts-20220829/imap.so /usr/src/php/ext/imap/modules/imap.so
 
 RUN set -ex; \
