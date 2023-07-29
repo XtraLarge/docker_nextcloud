@@ -14,27 +14,34 @@ RUN set -ex; \
     ; \
     rm -rf /var/lib/apt/lists/*
 
-#RUN set -ex; \
-#    \
-#    savedAptMark="$(apt-mark showmanual)"; \
-#    \
-#    apt-get update; \
-#    apt-get install -y --no-install-recommends \
-#        libbz2-dev \
-#        libc-client-dev \
-#        libkrb5-dev \
-#        libsmbclient-dev \
-#    ; \
-#    \
-#    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
-#    docker-php-ext-install \
-#        bz2 \
-#        imap \
-#    ; \
-#    pecl install smbclient; \
-#    docker-php-ext-enable smbclient; \
-#    \
+RUN set -ex; \
+    \
+    savedAptMark="$(apt-mark showmanual)"; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        libbz2-dev \
+        libc-client-dev \
+        libkrb5-dev \
+        libsmbclient-dev 
+
+RUN set -ex; \
+    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
+    docker-php-ext-install \
+        bz2 \
+        imap \
+    ; \
+    pecl install smbclient; \
+    docker-php-ext-enable smbclient
+
+RUN set -ex; \
+ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829/
+
+RUN set -ex; \
+ls -la /usr/local/lib/php/extensions/
+
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
+RUN set -ex; \
 #    apt-mark auto '.*' > /dev/null; \
 #    apt-mark manual $savedAptMark; \
 #    ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
@@ -43,8 +50,9 @@ RUN set -ex; \
 #        | xargs -r dpkg-query -S \
 #        | cut -d: -f1 \
 #        | sort -u \
-#        | xargs -rt apt-mark manual; \
-#    \
+#        | xargs -rt apt-mark manual
+
+RUN set -ex; \
 #    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 #    rm -rf /var/lib/apt/lists/*
 
