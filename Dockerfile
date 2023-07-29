@@ -30,27 +30,6 @@ RUN set -ex; \
     docker-php-ext-install \
         bz2 \
         imap 
-
-RUN set -ex; \
-  grep -sr "imap.so.so" /
-
-RUN set -ex; \
-  grep -sr "imap.so" /
-
-RUN set -ex; \
-    find / -name imap.so
-    
-RUN set -ex; \
-    ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
-        
-RUN set -ex; \
-    ls -la /usr/src/php/ext/imap/modules
-
-RUN set -ex; \
-    ln -s /usr/local/lib/php/extensions/no-debug-non-zts-20220829/imap.so /usr/src/php/ext/imap/modules/imap.so
-
-RUN set -ex; \
-    ls -la /usr/local/lib/php/extensions/no-debug-non-zts-20220829
         
 RUN set -ex; \
     pecl install smbclient; \
