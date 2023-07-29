@@ -45,7 +45,7 @@ RUN set -ex; \
         | xargs -r dpkg-query -S \
         | cut -d: -f1 \
         | sort -u \
-        | xargs -rt apt-mark manual
+        | xargs -rt apt-mark manual; 
 
 RUN set -ex; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
