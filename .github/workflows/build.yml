@@ -1,12 +1,11 @@
 name: Build Nextcloud Docker Container
 
-on: workflow_dispatch
-
-#on: 
-#  push:
-#    branches:
-#      - main
-#      - master 
+on: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master 
 
 jobs:
   docker:
