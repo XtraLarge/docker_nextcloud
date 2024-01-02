@@ -1,7 +1,7 @@
 name: Build Docker Container
 
-on: 
-  workflow_dispatch
+on: workflow_dispatch
+on:
   push:
     branches:
       - main
