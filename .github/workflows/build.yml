@@ -1,11 +1,12 @@
 name: Build Docker Container
 
-on:
-  workflow_call
-  push:
-    branches:
-      - main
-      - master 
+on: workflow_call
+
+#on:
+#  push:
+#    branches:
+#      - main
+#      - master 
 
 jobs:
   docker:
