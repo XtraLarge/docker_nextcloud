@@ -2,11 +2,11 @@ name: Build Docker Container
 
 on: workflow_dispatch
 
-#on:
-#  push:
-#    branches:
-#      - main
-#      - master 
+on:
+  push:
+    branches:
+      - main
+      - master 
 
 jobs:
   docker:
