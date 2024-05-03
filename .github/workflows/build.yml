@@ -30,4 +30,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: xtralarge71/docker_nextcloud:latest 
+          tags: xtralarge71/docker_nextcloud:latest
