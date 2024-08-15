@@ -53,7 +53,10 @@ RUN mkdir -p \
     /var/run/supervisord \
 ;
 RUN echo /var/www/html/config >> /upgrade.explude; \
-    echo /var/www/html/data >> /upgrade.explude
+    echo /var/www/html/data >> /upgrade.explude; \
+    echo /var/www/html/apps >> /upgrade.explude; \
+    echo /var/www/html/custom_apps >> /upgrade.explude; \
+    echo /var/www/html/themes >> /upgrade.explude; 
     
 COPY supervisord.conf /
 
