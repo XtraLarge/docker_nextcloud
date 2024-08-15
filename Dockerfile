@@ -52,10 +52,10 @@ RUN mkdir -p \
     /var/log/supervisord \
     /var/run/supervisord \
 ;
-RUN echo /var/www/html/config >> /upgrade.exclude; \
-    echo /var/www/html/data >> /upgrade.exclude; \
-    echo /var/www/html/custom_apps >> /upgrade.exclude; \
-    echo /var/www/html/themes >> /upgrade.exclude; 
+RUN echo /var/www/html/config/ >> /upgrade.exclude; \
+    echo /var/www/html/data/ >> /upgrade.exclude; \
+    echo /var/www/html/custom_apps/ >> /upgrade.exclude; \
+    echo /var/www/html/themes/ >> /upgrade.exclude; 
     
 COPY supervisord.conf /
 
