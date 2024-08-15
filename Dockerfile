@@ -52,7 +52,9 @@ RUN mkdir -p \
     /var/log/supervisord \
     /var/run/supervisord \
 ;
-
+RUN echo /var/www/html/config >> upgrade.explude; \
+    echo /var/www/html/data >> upgrade.explude
+    
 COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
