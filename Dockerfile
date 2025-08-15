@@ -27,8 +27,9 @@ RUN set -ex; \
 #        libc-client-dev \
         libkrb5-dev \
         libsmbclient-dev \
-    ; \
-    \
+    ;
+
+RUN set -ex; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
         bz2 \
