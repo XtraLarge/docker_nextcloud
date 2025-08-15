@@ -1,26 +1,21 @@
 FROM nextcloud:apache
 
-#RUN set -ex; \
-#    \
-#    apt-get update; \
-#    apt-get install -y --no-install-recommends \
-#        ffmpeg \
-#        ghostscript \
-#        libmagickcore-6.q16-6-extra \
-#        procps \
-#        smbclient \
-#        supervisor \
-#       libreoffice \
-#    ; \
-#    rm -rf /var/lib/apt/lists/*
+RUN set -ex; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        ffmpeg \
+        ghostscript \
+        libmagickcore-7.q16-10-extra \
+        procps \
+        smbclient \
+        supervisor \
+       libreoffice \
+    ; \
+    rm -rf /var/lib/apt/lists/*
 
-RUN set -ex; apt-get update;
-RUN set -ex; apt-get install -y --no-install-recommends ffmpeg;
-RUN set -ex; apt-get install -y --no-install-recommends ghostscript;
-RUN set -ex; apt-get install -y --no-install-recommends libmagickcore-7.q16-10-extra;
-RUN set -ex; apt-get install -y --no-install-recommends procps;
-RUN set -ex; apt-get install -y --no-install-recommends smbclient;
-RUN set -ex;  rm -rf /var/lib/apt/lists/*;
+#RUN set -ex; apt-get update;
+#RUN set -ex; apt-get install -y --no-install-recommends ffmpeg;
 
 RUN set -ex; \
     \
@@ -29,7 +24,7 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         libbz2-dev \
-        libc-client-dev \
+#        libc-client-dev \
         libkrb5-dev \
         libsmbclient-dev \
     ; \
