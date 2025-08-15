@@ -17,7 +17,7 @@ FROM nextcloud:apache
 RUN set -ex; apt-get update;
 RUN set -ex; apt-get install -y --no-install-recommends ffmpeg;
 RUN set -ex; apt-get install -y --no-install-recommends ghostscript;
-RUN set -ex; apt-get install -y --no-install-recommends libmagickcore-6.q16-6-extra;
+RUN set -ex; apt-get install -y --no-install-recommends libmagickcore-7.q16-10-extra;
 RUN set -ex; apt-get install -y --no-install-recommends procps;
 RUN set -ex; apt-get install -y --no-install-recommends smbclient;
 RUN set -ex;  rm -rf /var/lib/apt/lists/*;
