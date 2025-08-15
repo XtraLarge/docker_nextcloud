@@ -1,8 +1,8 @@
 FROM nextcloud:apache
 
-RUN set -ex; \
-    \
-    apt-get update; \
+#RUN set -ex; \
+#    \
+#    apt-get update; \
 #    apt-get install -y --no-install-recommends \
 #        ffmpeg \
 #        ghostscript \
@@ -13,8 +13,8 @@ RUN set -ex; \
 #       libreoffice \
 #    ; \
 #    rm -rf /var/lib/apt/lists/*
-;
 
+RUN set -ex; apt-get update;
 RUN set -ex; apt-get install -y --no-install-recommends ffmpeg;
 RUN set -ex; apt-get install -y --no-install-recommends ghostscript;
 RUN set -ex; apt-get install -y --no-install-recommends libmagickcore-6.q16-6-extra;
