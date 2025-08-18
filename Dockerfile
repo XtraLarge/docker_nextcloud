@@ -31,7 +31,6 @@ RUN set -ex; \
 RUN set -ex; \
     docker-php-ext-install \
         bz2 \
-        imap \
     ;
 
 RUN set -ex; \
