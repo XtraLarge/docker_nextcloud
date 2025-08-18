@@ -30,7 +30,7 @@ RUN set -ex; \
     ;
 
 RUN set -ex; \
-    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
+#    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install \
         bz2 \
         imap \
