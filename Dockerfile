@@ -1,5 +1,7 @@
 FROM nextcloud:apache
 
+RUN apt-get update && apt-get install -y procps smbclient && rm -rf /var/lib/apt/lists/*
+
 RUN set -ex; \
     \
     apt-get update; \
@@ -8,14 +10,13 @@ RUN set -ex; \
         ghostscript \
         libmagickcore-7.q16-10-extra \
         procps \
-        smbclient \
-        supervisor \
-#       libreoffice \
     ; \
     rm -rf /var/lib/apt/lists/*
 
-#RUN set -ex; apt-get update;
-#RUN set -ex; apt-get install -y --no-install-recommends ffmpeg;
+RUN apt-get update && apt-get install -y \
+    supervisor \
+  && rm -rf /var/lib/apt/lists/* \
+  && mkdir /var/log/supervisord /var/run/supervisord
 
 RUN set -ex; \
     \
@@ -24,13 +25,9 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         libbz2-dev \
-#        libc-client-dev \
-        libkrb5-dev \
         libsmbclient-dev \
-    ;
-
-RUN set -ex; \
-#    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
+    ; \
+    \
     docker-php-ext-install \
         bz2 \
         imap \
@@ -52,11 +49,6 @@ RUN set -ex; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p \
-    /var/log/supervisord \
-    /var/run/supervisord \
-    ;
-    
 COPY supervisord.conf /
 
 ENV NEXTCLOUD_UPDATE=1
