@@ -26,28 +26,21 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         libbz2-dev \
         libsmbclient-dev \
-    ; \
-    \
+    ; 
+
+RUN set -ex; \
     docker-php-ext-install \
         bz2 \
         imap \
-    ; \
+    ;
+
+RUN set -ex; \
     pecl install smbclient; \
-    docker-php-ext-enable smbclient; \
-    \
-# reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
-    apt-mark auto '.*' > /dev/null; \
-    apt-mark manual $savedAptMark; \
-    ldd "$(php -r 'echo ini_get("extension_dir");')"/*.so \
-        | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); print so }' \
-        | sort -u \
-        | xargs -r dpkg-query --search \
-        | cut -d: -f1 \
-        | sort -u \
-        | xargs -rt apt-mark manual; \
-    \
+    docker-php-ext-enable smbclient; 
+
+RUN set -ex; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*;
 
 COPY supervisord.conf /
 
