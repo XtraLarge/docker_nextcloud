@@ -1,0 +1,14 @@
+name: naming-guard
+on: [push, pull_request]
+permissions: { contents: read }
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Block internal names
+        run: |
+          pattern='10\.10\.[0-9]+\.[0-9]+|192\.168\.178\.|srv-|docker-|manage-|\.internal\.lan'
+          if git ls-files -z | xargs -0 grep -lE "$pattern" 2>/dev/null | grep -v naming-guard; then
+            echo "::error::Internal naming found"; exit 1
+          fi
